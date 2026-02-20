@@ -1,8 +1,0 @@
-Cómo ejecutarlo todo junto:
-
-
-Abre la terminal en cd C:\xampp\htdocs\intranet\modules\ia_backend\.
-
-Ejecuta: python main.py.
-
-Prueba en el navegador: Entra a http://localhost:8000/docs.
