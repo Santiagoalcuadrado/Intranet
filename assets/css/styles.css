@@ -1,0 +1,84 @@
+/* --- VARIABLES GLOBALES (ADN BPEZ) --- */
+:root {
+    --bpez-cian: #76C7C0;
+    --bpez-rojo-fuego: #CE2029;
+    --bpez-dark-blue: #003366; 
+    --bpez-azul-alegre: #0077B6;
+    --header-bg-integrado: #e0f2f1;
+    --bpez-celeste: #003366; 
+    --glass-white: rgba(255, 255, 255, 0.85);
+}
+
+/* --- RESET Y FUENTES --- */
+html, body { 
+    height: 100%; 
+    scroll-behavior: smooth; 
+}
+
+body { 
+    display: flex; 
+    flex-direction: column; 
+    padding-top: 130px; /* Espacio para el Navbar fijo */
+    background: linear-gradient(135deg, var(--bpez-cian) 0%, #ffffff 100%);
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    margin: 0;
+}
+
+.main-content { 
+    flex: 1 0 auto; 
+    position: relative;
+    z-index: 1; /* Para estar sobre el fondo de libros */
+}
+
+/* --- COMPONENTES ESTÁNDAR (Para usar en todos los módulos) --- */
+
+/* Títulos de sección */
+.section-title {
+    color: var(--bpez-dark-blue);
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.title-underline {
+    width: 60px;
+    height: 4px;
+    background: var(--bpez-rojo-fuego);
+    margin: 10px auto 0;
+}
+
+/* Tarjetas con efecto Glassmorphism */
+.bpez-card {
+    background: var(--glass-white);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.bpez-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Animaciones globales */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+    animation: fadeInUp 0.5s ease;
+}
+
+/* Ajustes para el Scroll Reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.7s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
