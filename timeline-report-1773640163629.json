@@ -1,0 +1,862 @@
+[
+  {
+    "file": "intranet/login.html",
+    "days": [
+      "2026-02-12 21",
+      "2026-02-12 22",
+      "2026-02-13 00"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/sgc_frontend.php",
+    "days": [
+      "2026-03-07 22",
+      "2026-03-07 23",
+      "2026-03-12 00"
+    ]
+  },
+  {
+    "file": "intranet/olvidocontrasena.html",
+    "days": [
+      "2026-02-13 00"
+    ]
+  },
+  {
+    "file": "intranet/includes/avatar3d.php",
+    "days": [
+      "2026-02-26 15",
+      "2026-02-26 16",
+      "2026-02-26 17"
+    ]
+  },
+  {
+    "file": "intranet/librerias-python.txt",
+    "days": [
+      "2026-02-18 00"
+    ]
+  },
+  {
+    "file": "intranet/assets/js/tabla_base.js",
+    "days": [
+      "2026-03-04 23",
+      "2026-03-05 00"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/perfil_frontend.php",
+    "days": [
+      "2026-02-16 18",
+      "2026-02-16 19",
+      "2026-02-24 17",
+      "2026-02-25 16",
+      "2026-02-25 17",
+      "2026-02-25 18",
+      "2026-02-25 22",
+      "2026-03-04 17",
+      "2026-03-11 19",
+      "2026-03-11 20"
+    ]
+  },
+  {
+    "file": "intranet/modules/actualizacion_biblioteca_digital/actualizacion_biblioteca_digital.php",
+    "days": [
+      "2026-03-11 23"
+    ]
+  },
+  {
+    "file": "intranet/modules/institucion/institucion.php",
+    "days": [
+      "2026-02-25 23"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/olvido_contrasena_frontend.php",
+    "days": [
+      "2026-02-21 21",
+      "2026-02-21 22",
+      "2026-03-04 17",
+      "2026-03-11 18",
+      "2026-03-12 01"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/crud_admin_frontend.php",
+    "days": [
+      "2026-03-04 17",
+      "2026-03-04 18",
+      "2026-03-04 19",
+      "2026-03-04 22",
+      "2026-03-11 20",
+      "2026-03-11 21",
+      "2026-03-12 00"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/seguridad_frontend.php",
+    "days": [
+      "2026-02-16 21"
+    ]
+  },
+  {
+    "file": "intranet/prueba_gems.php",
+    "days": [
+      "2026-03-11 15",
+      "2026-03-11 16"
+    ]
+  },
+  {
+    "file": "intranet/modules/ia_backend/motor_ia.py",
+    "days": [
+      "2026-02-18 00"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/reglamento_interno_frontend.php",
+    "days": [
+      "2026-02-18 21"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/login_frontend.php",
+    "days": [
+      "2026-02-21 20",
+      "2026-02-21 21",
+      "2026-02-23 22",
+      "2026-02-24 16",
+      "2026-03-04 17"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/reuniones_frontend.php",
+    "days": [
+      "2026-02-16 21"
+    ]
+  },
+  {
+    "file": "intranet/modules/contexto/contexto.php",
+    "days": [
+      "2026-02-25 14"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/procedimientos_nivel_staff_frontend.php",
+    "days": [
+      "2026-02-26 12",
+      "2026-03-04 17"
+    ]
+  },
+  {
+    "file": "intranet/includes/tabla_base.php",
+    "days": [
+      "2026-03-04 23"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/prueba.php",
+    "days": [
+      "2026-02-26 14"
+    ]
+  },
+  {
+    "file": "intranet/navbar-antes.txt",
+    "days": [
+      "2026-02-18 18"
+    ]
+  },
+  {
+    "file": "intranet/includes/navbar.php",
+    "days": [
+      "2026-02-25 14",
+      "2026-02-25 16",
+      "2026-02-25 23",
+      "2026-02-27 01",
+      "2026-03-11 23"
+    ]
+  },
+  {
+    "file": "intranet/modules/cargos/cargos.php",
+    "days": [
+      "2026-02-25 23"
+    ]
+  },
+  {
+    "file": "intranet/assets/js/background-animation.js",
+    "days": [
+      "2026-02-16 19"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/proyectos_frontend.php",
+    "days": [
+      "2026-02-16 21"
+    ]
+  },
+  {
+    "file": "intranet/organizacion.html",
+    "days": [
+      "2026-02-13 00",
+      "2026-02-13 01"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/reportes_actividades_frontend.php",
+    "days": [
+      "2026-02-16 21"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/contexto_internacional_frontend.php",
+    "days": [
+      "2026-02-22 14",
+      "2026-02-22 15",
+      "2026-02-25 13",
+      "2026-02-25 14",
+      "2026-02-25 15",
+      "2026-03-04 17"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/actualizacion_biblioteca_digital_frontend.php",
+    "days": [
+      "2026-03-11 23",
+      "2026-03-12 00"
+    ]
+  },
+  {
+    "file": "intranet/modules/archivo_digital/archivo_digital.php",
+    "days": [
+      "2026-03-07 23"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/planificacion_frontend.php",
+    "days": [
+      "2026-02-16 21"
+    ]
+  },
+  {
+    "file": "intranet/principal.html",
+    "days": [
+      "2026-02-12 23",
+      "2026-02-13 01"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/informes_gestion_frontend.php",
+    "days": [
+      "2026-02-16 21"
+    ]
+  },
+  {
+    "file": "intranet/modules/admin/crud_admin.php",
+    "days": [
+      "2026-03-04 16"
+    ]
+  },
+  {
+    "file": "intranet/assets/js/assets/js/background-animation.js",
+    "days": [
+      "2026-02-16 18"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/organizacion_frontend.php",
+    "days": [
+      "2026-02-16 18",
+      "2026-02-16 19",
+      "2026-02-18 17",
+      "2026-02-19 22",
+      "2026-02-19 23"
+    ]
+  },
+  {
+    "file": "intranet/modules/aula_virtual/aula_virtual.php",
+    "days": [
+      "2026-02-27 01",
+      "2026-02-27 03"
+    ]
+  },
+  {
+    "file": "intranet/config/db.php",
+    "days": [
+      "2026-02-16 16",
+      "2026-02-16 17"
+    ]
+  },
+  {
+    "file": "intranet/modules/procedimientos/procedimientos_nivel_estrategico.php",
+    "days": [
+      "2026-02-26 12"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/procedimientos_frontend.php",
+    "days": [
+      "2026-02-16 21",
+      "2026-02-18 16",
+      "2026-02-26 12",
+      "2026-02-26 23",
+      "2026-03-04 17",
+      "2026-03-12 00"
+    ]
+  },
+  {
+    "file": "intranet/index.php",
+    "days": [
+      "2026-02-16 15",
+      "2026-02-16 19",
+      "2026-02-21 20",
+      "2026-02-21 23",
+      "2026-03-04 17"
+    ]
+  },
+  {
+    "file": "intranet/includes/buscador_ia.php",
+    "days": [
+      "2026-02-26 17"
+    ]
+  },
+  {
+    "file": "intranet/auth/logout.php",
+    "days": [
+      "2026-02-23 23"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/institucion_frontend.php",
+    "days": [
+      "2026-02-25 23",
+      "2026-02-26 23",
+      "2026-03-04 17",
+      "2026-03-12 00"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/archivo_digital_frontend.php",
+    "days": [
+      "2026-03-07 23",
+      "2026-03-12 00"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/panel_admin_frontend.php",
+    "days": [
+      "2026-02-25 23",
+      "2026-02-26 00",
+      "2026-03-04 16",
+      "2026-03-04 17",
+      "2026-03-11 20"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/contexto_venezolano_frontend.php",
+    "days": [
+      "2026-02-25 15",
+      "2026-03-04 17",
+      "2026-03-04 23",
+      "2026-03-05 00",
+      "2026-03-05 01",
+      "2026-03-12 18",
+      "2026-03-12 19",
+      "2026-03-12 20",
+      "2026-03-12 21"
+    ]
+  },
+  {
+    "file": "intranet/modules/personal/personal.php",
+    "days": [
+      "2026-03-07 22"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/cargos_frontend.php",
+    "days": [
+      "2026-02-16 21",
+      "2026-02-18 16",
+      "2026-02-18 17",
+      "2026-02-25 23",
+      "2026-02-26 23",
+      "2026-03-04 17",
+      "2026-03-12 00"
+    ]
+  },
+  {
+    "file": "intranet/auth/session_check.php",
+    "days": [
+      "2026-02-23 20",
+      "2026-02-23 21",
+      "2026-02-23 22",
+      "2026-02-23 23",
+      "2026-02-25 10",
+      "2026-02-26 23",
+      "2026-02-27 00",
+      "2026-02-27 01",
+      "2026-03-04 16"
+    ]
+  },
+  {
+    "file": "intranet/modules/cargos/cargos_nivel_operativo.php",
+    "days": [
+      "2026-02-25 23"
+    ]
+  },
+  {
+    "file": "intranet/modules/ia_backend/ask_ia.php",
+    "days": [
+      "2026-02-16 22",
+      "2026-02-18 01",
+      "2026-02-27 01",
+      "2026-02-27 02",
+      "2026-02-27 03"
+    ]
+  },
+  {
+    "file": "intranet/creacion_base_datos.txt",
+    "days": [
+      "2026-02-23 20",
+      "2026-02-23 21",
+      "2026-02-24 15",
+      "2026-02-24 16",
+      "2026-02-25 16",
+      "2026-02-25 20",
+      "2026-03-04 01",
+      "2026-03-04 20",
+      "2026-03-11 17"
+    ]
+  },
+  {
+    "file": "intranet/modules/desempeno/desempeno.php",
+    "days": [
+      "2026-03-07 22"
+    ]
+  },
+  {
+    "file": "intranet/ingresar.html",
+    "days": [
+      "2026-02-12 21",
+      "2026-02-12 22",
+      "2026-02-13 00"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/leyes_nacionales_frontend.php",
+    "days": [
+      "2026-02-18 20"
+    ]
+  },
+  {
+    "file": "intranet/modules/contexto/internacional.php",
+    "days": [
+      "2026-02-25 13",
+      "2026-02-25 15"
+    ]
+  },
+  {
+    "file": "intranet/assets/css/styles.css",
+    "days": [
+      "2026-02-16 21"
+    ]
+  },
+  {
+    "file": "intranet/modules/login_backend/login_backend.php",
+    "days": [
+      "2026-02-23 22",
+      "2026-02-24 16",
+      "2026-02-25 10",
+      "2026-02-25 11"
+    ]
+  },
+  {
+    "file": "intranet/includes/favicon.php",
+    "days": [
+      "2026-03-04 16",
+      "2026-03-04 17"
+    ]
+  },
+  {
+    "file": "intranet/modules/procedimientos/procedimientos.php",
+    "days": [
+      "2026-02-26 12"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/legal_frontend.php",
+    "days": [
+      "2026-02-25 15"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/personal_frontend.php",
+    "days": [
+      "2026-03-07 22",
+      "2026-03-12 00"
+    ]
+  },
+  {
+    "file": "intranet/modules/contexto/venezolano.php",
+    "days": [
+      "2026-02-25 14",
+      "2026-03-12 16"
+    ]
+  },
+  {
+    "file": "intranet/assets/js/contexto_venezolano_ajax.js",
+    "days": [
+      "2026-03-05 00",
+      "2026-03-12 18",
+      "2026-03-12 19",
+      "2026-03-12 20"
+    ]
+  },
+  {
+    "file": "intranet/assets/js/crud_admin.js",
+    "days": [
+      "2026-03-04 17",
+      "2026-03-04 18",
+      "2026-03-04 19",
+      "2026-03-04 20",
+      "2026-03-04 22",
+      "2026-03-11 20",
+      "2026-03-11 21",
+      "2026-03-11 22"
+    ]
+  },
+  {
+    "file": "intranet/includes/footer.php",
+    "days": [
+      "2026-02-16 16",
+      "2026-02-16 17",
+      "2026-02-18 18",
+      "2026-02-21 22",
+      "2026-02-25 15",
+      "2026-02-26 17",
+      "2026-03-04 02"
+    ]
+  },
+  {
+    "file": "intranet/modules/legal/condiciones.php",
+    "days": [
+      "2026-02-25 15"
+    ]
+  },
+  {
+    "file": "intranet/modules/perfil/perfil.php",
+    "days": [
+      "2026-02-25 16",
+      "2026-02-25 17",
+      "2026-02-25 18",
+      "2026-02-25 22",
+      "2026-03-04 02",
+      "2026-03-11 18",
+      "2026-03-11 19",
+      "2026-03-11 20"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/contexto_lineamentos_nacionales_libro_lectura_bibliotecas_frontend.php",
+    "days": [
+      "2026-02-25 15",
+      "2026-03-04 17"
+    ]
+  },
+  {
+    "file": "intranet/includes/avatar_chatbotia_flotante.php",
+    "days": [
+      "2026-02-26 17",
+      "2026-02-26 18",
+      "2026-02-26 23",
+      "2026-02-27 02",
+      "2026-03-11 15"
+    ]
+  },
+  {
+    "file": "intranet/modules/admin/panel_admin.php",
+    "days": [
+      "2026-02-25 23",
+      "2026-02-26 00"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/procedimientos_nivel_operativo_frontend.php",
+    "days": [
+      "2026-02-26 12",
+      "2026-02-26 13",
+      "2026-03-04 17"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/cargos_nivel_operativo_frontend.php",
+    "days": [
+      "2026-02-25 23",
+      "2026-03-04 17"
+    ]
+  },
+  {
+    "file": "intranet/modules/cargos/cargos_nivel_estrategico.php",
+    "days": [
+      "2026-02-25 23"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/principal_frontend.php",
+    "days": [
+      "2026-02-26 13",
+      "2026-02-26 14",
+      "2026-02-26 15",
+      "2026-02-26 16",
+      "2026-02-26 17",
+      "2026-02-26 18",
+      "2026-02-27 02",
+      "2026-03-04 16",
+      "2026-03-04 17",
+      "2026-03-12 00"
+    ]
+  },
+  {
+    "file": "intranet/modules/admin/crud_admin_ajax.php",
+    "days": [
+      "2026-03-04 17",
+      "2026-03-04 18",
+      "2026-03-04 19",
+      "2026-03-04 20",
+      "2026-03-11 20",
+      "2026-03-11 21"
+    ]
+  },
+  {
+    "file": "intranet/modules/contexto/lineamentos_nacionales_libro_lectura_bibliotecas.php",
+    "days": [
+      "2026-02-25 15"
+    ]
+  },
+  {
+    "file": "intranet/modules/legal/privacidad.php",
+    "days": [
+      "2026-02-25 15"
+    ]
+  },
+  {
+    "file": "intranet/auth/ingresar_frontend.php",
+    "days": [
+      "2026-02-16 19",
+      "2026-02-21 20",
+      "2026-02-21 22",
+      "2026-02-24 17",
+      "2026-02-25 10",
+      "2026-02-25 11",
+      "2026-03-04 17"
+    ]
+  },
+  {
+    "file": "intranet/test_fecha.php",
+    "days": [
+      "2026-03-04 20"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/procedimientos_nivel_estrategico_frontend.php",
+    "days": [
+      "2026-02-26 12",
+      "2026-03-04 17"
+    ]
+  },
+  {
+    "file": "intranet/includes/avatar-chatbot-flotante.php",
+    "days": [
+      "2026-02-26 17"
+    ]
+  },
+  {
+    "file": "intranet/ejemplo_configuracion_tabla.txt",
+    "days": [
+      "2026-03-04 23"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/cargos_nivel_estrategico_frontend.php",
+    "days": [
+      "2026-02-25 23",
+      "2026-02-26 12",
+      "2026-03-04 17"
+    ]
+  },
+  {
+    "file": "intranet/modules/ia_backend/datos_bpez.py",
+    "days": [
+      "2026-02-18 00",
+      "2026-02-18 01",
+      "2026-02-18 15"
+    ]
+  },
+  {
+    "file": "intranet/modules/procedimientos/procedimientos_nivel_operativo.php",
+    "days": [
+      "2026-02-26 12"
+    ]
+  },
+  {
+    "file": "intranet/assets/js/ia_voice_global.js",
+    "days": [
+      "2026-02-18 19",
+      "2026-02-27 02"
+    ]
+  },
+  {
+    "file": "intranet/modules/contexto/contexto_venezolano_ajax.php",
+    "days": [
+      "2026-03-05 00",
+      "2026-03-05 01",
+      "2026-03-12 18",
+      "2026-03-12 19",
+      "2026-03-12 20"
+    ]
+  },
+  {
+    "file": "intranet/includes/volumen_control.php",
+    "days": [
+      "2026-02-18 19",
+      "2026-02-22 14",
+      "2026-02-26 18"
+    ]
+  },
+  {
+    "file": "intranet/modules/cargos/cargos_nivel_staff.php",
+    "days": [
+      "2026-02-25 23"
+    ]
+  },
+  {
+    "file": "intranet/modules/ia_backend/main.py",
+    "days": [
+      "2026-02-18 00",
+      "2026-02-18 01"
+    ]
+  },
+  {
+    "file": "intranet/modules/procedimientos/procedimientos_nivel_staff.php",
+    "days": [
+      "2026-02-26 12"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/seguridad_laboral_frontend.php",
+    "days": [
+      "2026-02-18 21"
+    ]
+  },
+  {
+    "file": "intranet/auth/olvido_contrasena_ajax.php",
+    "days": [
+      "2026-03-11 18",
+      "2026-03-11 19"
+    ]
+  },
+  {
+    "file": "intranet/auth/ingresar_backend.php",
+    "days": [
+      "2026-02-23 20",
+      "2026-02-25 10",
+      "2026-02-25 11"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/cargos_nivel_staff_frontend.php",
+    "days": [
+      "2026-02-25 23",
+      "2026-03-04 17"
+    ]
+  },
+  {
+    "file": "intranet/config/conexiondb.php",
+    "days": [
+      "2026-02-23 20",
+      "2026-02-23 21"
+    ]
+  },
+  {
+    "file": "intranet/como-ejecutar-motoria.txt",
+    "days": [
+      "2026-02-18 01"
+    ]
+  },
+  {
+    "file": "intranet/estructura_del_sisteam_solo_representacion.txt",
+    "days": [
+      "2026-02-26 00"
+    ]
+  },
+  {
+    "file": "intranet/insertar_usuarios_db.php",
+    "days": [
+      "2026-02-23 20",
+      "2026-02-23 22",
+      "2026-02-24 15",
+      "2026-02-25 16",
+      "2026-02-25 22",
+      "2026-03-04 01",
+      "2026-03-11 18"
+    ]
+  },
+  {
+    "file": "intranet/modules/principal_backend/principal_backend.php",
+    "days": [
+      "2026-02-25 11"
+    ]
+  },
+  {
+    "file": "intranet/modules/gestion/gestion.php",
+    "days": [
+      "2026-03-07 22"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/aula_virtual_frontend.php",
+    "days": [
+      "2026-02-27 03",
+      "2026-03-04 17",
+      "2026-03-07 23",
+      "2026-03-12 00"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/gestion_frontend.php",
+    "days": [
+      "2026-03-07 22",
+      "2026-03-12 00"
+    ]
+  },
+  {
+    "file": "intranet/modules/sgc/sgc.php",
+    "days": [
+      "2026-03-07 22"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/desempeno_frontend.php",
+    "days": [
+      "2026-03-07 22",
+      "2026-03-12 00"
+    ]
+  },
+  {
+    "file": "intranet/assets/frontend/contexto_frontend.php",
+    "days": [
+      "2026-02-25 14",
+      "2026-02-26 23",
+      "2026-03-04 17",
+      "2026-03-12 00"
+    ]
+  },
+  {
+    "file": "intranet/organizacion_del_proyecto.html",
+    "days": [
+      "2026-02-16 15"
+    ]
+  },
+  {
+    "file": "intranet/modules/documentos_ajax.php",
+    "days": [
+      "2026-03-04 23"
+    ]
+  }
+]

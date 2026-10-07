@@ -1,0 +1,112 @@
+📁 INTRANET/
+│
+├── 📁 assets/
+│   ├── 📁 frontend/
+│   │   ├── 📄 admin_panel_frontend.php
+│   │   ├── 📄 cargos_frontend.php
+│   │   ├── 📄 cargos_nivel_estrategico_frontend.php
+│   │   ├── 📄 cargos_nivel_operativo_frontend.php
+│   │   ├── 📄 cargos_nivel_staff_frontend.php
+│   │   ├── 📄 contexto_frontend.php
+│   │   ├── 📄 contexto_internacional_frontend.php
+│   │   ├── 📄 contexto_venezolano_frontend.php
+│   │   ├── 📄 institucion_frontend.php
+│   │   ├── 📄 internacional_frontend.php
+│   │   ├── 📄 login_frontend.php
+│   │   ├── 📄 olvido_contrasena_frontend.php
+│   │   ├── 📄 panel_admin_frontend.php
+│   │   ├── 📄 perfil_frontend.php
+│   │   ├── 📄 principal_frontend.php
+│   │   └── 📄 venezolano_frontend.php
+│   │
+│   ├── 📁 img/
+│   │   └── 📄 logo.png
+│   │
+│   └── 📁 js/
+│       ├── 📄 background-animation.js
+│       └── 📄 ia_voice_global.js
+│
+├── 📁 auth/
+│   ├── 📄 ingresar_backend.php
+│   ├── 📄 ingresar_frontend.php
+│   ├── 📄 login_backend.php
+│   ├── 📄 logout.php
+│   └── 📄 session_check.php
+│
+├── 📁 config/
+│   └── 📄 conexiondb.php
+│
+├── 📁 includes/
+│   ├── 📄 footer.php
+│   ├── 📄 navbar.php
+│   └── 📄 volumen_control.php
+│
+├── 📁 modules/
+│   ├── 📁 admin/
+│   │   ├── 📄 get_kpis.php
+│   │   ├── 📄 panel_admin.php
+│   │   ├── 📄 reportes.php
+│   │   └── 📄 usuarios.php
+│   │
+│   ├── 📁 archivo_digital/
+│   │   └── 📄 archivo_digital.php
+│   │
+│   ├── 📁 aula_virtual/
+│   │   └── 📄 aula_virtual.php
+│   │
+│   ├── 📁 cargos/
+│   │   ├── 📄 cargos.php
+│   │   ├── 📄 nivel_estrategico.php
+│   │   ├── 📄 nivel_operativo.php
+│   │   └── 📄 nivel_staff.php
+│   │
+│   ├── 📁 contexto/
+│   │   ├── 📄 contexto.php
+│   │   ├── 📄 internacional.php
+│   │   ├── 📄 libro_lectura.php
+│   │   ├── 📄 nacional.php
+│   │   ├── 📄 regional.php
+│   │   └── 📄 venezolano.php
+│   │
+│   ├── 📁 desempeno/
+│   │   └── 📄 desempeno.php
+│   │
+│   ├── 📁 gestion/
+│   │   └── 📄 gestion.php
+│   │
+│   ├── 📁 ia_backend/
+│   │   └── 📄 ask_ia.php
+│   │
+│   ├── 📁 institucion/
+│   │   ├── 📄 acta_constitutiva.php
+│   │   ├── 📄 institucion.php
+│   │   ├── 📄 manual_organizacional.php
+│   │   ├── 📄 mision_vision_valores.php
+│   │   ├── 📄 organigrama.php
+│   │   ├── 📄 politicas_normativas_etica.php
+│   │   └── 📄 resena_historica.php
+│   │
+│   ├── 📁 login_backend/
+│   │   └── 📄 login_backend.php
+│   │
+│   ├── 📁 perfil/
+│   │   └── 📄 perfil.php
+│   │
+│   ├── 📁 personal/
+│   │   └── 📄 personal.php
+│   │
+│   ├── 📁 principal_backend/
+│   │   └── 📄 principal_backend.php
+│   │
+│   ├── 📁 procedimientos/
+│   │   └── 📄 procedimientos.php
+│   │
+│   └── 📁 sgc/
+│       └── 📄 sgc.php
+│
+├── 📁 uploads/ (opcional - para archivos subidos)
+│
+├── 📄 index.php
+│
+└── 📁 scripts/ (útiles)
+    └── 📄 insertar_usuario_db.php

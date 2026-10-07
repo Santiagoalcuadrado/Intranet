@@ -1,0 +1,72 @@
+EJEMPLOS DE USO EN DIFERENTES MÓDULOS
+Ejemplo 1: Contexto Venezolano (3 campos, todas las acciones)
+php
+<?php
+// En /modules/contexto/venezolano.php
+$tabla_config = [
+    'tipo' => 'ley',
+    'campos' => [
+        'titulo' => 'Ley / Instrumento',
+        'gaceta' => 'Última Actualización / Gaceta',
+        'descripcion' => 'Resumen de Impacto Administrativo'
+    ],
+    'acciones' => [
+        'ver' => true,
+        'descargar' => true,
+        'editar' => ($_SESSION['rol'] === 'Administrador'),
+        'cambiar_estado' => ($_SESSION['rol'] === 'Administrador'),
+        'eliminar' => ($_SESSION['rol'] === 'Administrador')
+    ],
+    'mostrar_boton_subir' => ($_SESSION['rol'] === 'Administrador'),
+    'nombre_boton_subir' => 'Subir Nueva Ley',
+    'icono_boton_subir' => 'fa-gavel'
+];
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/tabla_base.php';
+?>
+Ejemplo 2: Procedimientos (2 campos, solo acciones básicas)
+php
+<?php
+// En /modules/procedimientos/procedimientos.php
+$tabla_config = [
+    'tipo' => 'procedimiento',
+    'campos' => [
+        'titulo' => 'Nombre del Procedimiento',
+        'descripcion' => 'Descripción'
+    ],
+    'acciones' => [
+        'ver' => true,
+        'descargar' => true,
+        'editar' => false,  // No permitir edición
+        'cambiar_estado' => false,
+        'eliminar' => false
+    ],
+    'mostrar_boton_subir' => false  // No mostrar botón
+];
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/tabla_base.php';
+?>
+Ejemplo 3: Informes (4 campos, solo admin puede todo)
+php
+<?php
+// En /modules/informes/informes.php
+$es_admin = ($_SESSION['rol'] === 'Administrador');
+
+$tabla_config = [
+    'tipo' => 'informe',
+    'campos' => [
+        'titulo' => 'Título del Informe',
+        'gaceta' => 'Fecha',
+        'descripcion' => 'Descripción',
+        'responsable' => 'Responsable'  // Campo adicional
+    ],
+    'acciones' => [
+        'ver' => true,
+        'descargar' => true,
+        'editar' => $es_admin,
+        'cambiar_estado' => $es_admin,
+        'eliminar' => $es_admin
+    ],
+    'mostrar_boton_subir' => $es_admin,
+    'nombre_boton_subir' => 'Subir Nuevo Informe'
+];
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/tabla_base.php';
+?>

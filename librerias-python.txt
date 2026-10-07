@@ -1,0 +1,8 @@
+pip install fastapi pydantic uvicorn scikit-learn pandas
+
+Para el Docker requeriments.txt:
+fastapi
+pydantic
+uvicorn
+scikit-learn
+pandas

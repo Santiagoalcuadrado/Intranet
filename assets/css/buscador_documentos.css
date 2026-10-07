@@ -1,0 +1,130 @@
+/**
+ * buscador_documentos.css
+ * Estilos específicos para el buscador de documentos
+ * Agregar al final de buscador_usuarios.css o en archivo separado
+ */
+
+/* Estilos específicos para documentos */
+.documento-item {
+    padding: 12px 18px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-bottom: 1px solid rgba(0, 119, 182, 0.1);
+}
+
+.documento-item:hover {
+    background: rgba(0, 119, 182, 0.1);
+}
+
+.documento-item-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.documento-titulo {
+    font-weight: 700;
+    color: #003366;
+    font-size: 0.95rem;
+}
+
+.documento-tipo {
+    font-size: 0.7rem;
+    color: #0077B6;
+    background: rgba(0, 119, 182, 0.1);
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+.documento-item-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 0.7rem;
+    color: #2c5a7a;
+}
+
+.documento-descripcion {
+    font-size: 0.7rem;
+    color: #6c757d;
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: 1px dashed rgba(0, 119, 182, 0.2);
+}
+
+.documento-gaceta {
+    font-size: 0.7rem;
+    color: #CE2029;
+    margin-top: 3px;
+}
+
+.documento-badge {
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 0.65rem;
+    font-weight: 600;
+}
+
+.estado-aprobado { background: #28a745; color: white; }
+.estado-pendiente { background: #ffc107; color: #003366; }
+.estado-rechazado { background: #dc3545; color: white; }
+
+.documento-seleccionado {
+    background: rgba(0, 119, 182, 0.15);
+    border-radius: 15px;
+    padding: 10px 15px;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.documento-seleccionado span {
+    color: #003366;
+    font-size: 0.85rem;
+}
+
+.documento-seleccionado .documento-badge {
+    margin-left: 8px;
+}
+
+.documento-limpiar {
+    background: rgba(206, 32, 41, 0.15);
+    border: none;
+    border-radius: 50px;
+    padding: 5px 12px;
+    color: #CE2029;
+    cursor: pointer;
+    font-size: 0.7rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.documento-limpiar:hover {
+    background: rgba(206, 32, 41, 0.3);
+}
+
+@media (max-width: 768px) {
+    .documento-item-header {
+        flex-direction: column;
+        gap: 4px;
+        margin-bottom: 8px;
+    }
+    
+    .documento-item-details {
+        flex-direction: column;
+        gap: 6px;
+    }
+    
+    .documento-seleccionado {
+        flex-direction: column;
+        text-align: center;
+    }
+}

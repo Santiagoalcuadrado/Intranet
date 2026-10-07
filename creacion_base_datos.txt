@@ -1,0 +1,308 @@
+-- =====================================================
+-- BASE DE DATOS INTRANET BPEZ - VERSIÓN COMPLETA
+-- CON SISTEMA DE PREGUNTAS DE SEGURIDAD Y RECUPERACIÓN
+-- =====================================================
+CREATE DATABASE IF NOT EXISTS intranetdb_bpez 
+DEFAULT CHARACTER SET utf8mb4 
+COLLATE utf8mb4_spanish_ci;
+
+-- Configuración de zona horaria para Caracas, Venezuela
+SET time_zone = "-04:00";
+
+-- =====================================================
+-- TABLA 1: roles
+-- =====================================================
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_rol` varchar(50) NOT NULL COMMENT 'Nombre del rol (Administrador, Usuario)',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Roles de usuario del sistema';
+
+-- Insertar los roles base
+INSERT INTO `roles` (`nombre_rol`) VALUES ('Administrador'), ('Usuario');
+
+-- =====================================================
+-- TABLA 2: usuarios (MODIFICADA con nuevos campos)
+-- =====================================================
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  -- Datos personales básicos
+  `primer_nombre` varchar(50) NOT NULL COMMENT 'Primer nombre del usuario',
+  `segundo_nombre` varchar(50) DEFAULT NULL COMMENT 'Segundo nombre del usuario',
+  `primer_apellido` varchar(50) NOT NULL COMMENT 'Primer apellido del usuario',
+  `segundo_apellido` varchar(50) DEFAULT NULL COMMENT 'Segundo apellido del usuario',
+  `cedula` varchar(10) NOT NULL COMMENT 'Cédula de identidad (única)',
+  `fecha_nacimiento` date NOT NULL COMMENT 'Fecha de nacimiento',
+  `genero` enum('M','F','O') NOT NULL COMMENT 'Género: M=Masculino, F=Femenino, O=Otro',
+  `telefono` varchar(20) NOT NULL COMMENT 'Número de teléfono (único)',
+  `email` varchar(255) NOT NULL COMMENT 'Correo electrónico (único)',
+  `direccion` text NOT NULL COMMENT 'Dirección de residencia',
+  `password_hash` varchar(255) NOT NULL COMMENT 'Hash de la contraseña',
+  `id_rol` int(11) NOT NULL COMMENT 'ID del rol del usuario',
+  `estado` enum('Activo','Inactivo','Suspendido') DEFAULT 'Activo' COMMENT 'Estado actual del usuario',
+  `fecha_ingreso` date DEFAULT NULL COMMENT 'Fecha de ingreso a la institución',
+  `fecha_egreso` date DEFAULT NULL COMMENT 'Fecha de egreso de la institución',
+  
+  -- ===== CAMPOS DE MODIFICACIÓN INDIVIDUAL =====
+  `telefono_modificacion` datetime DEFAULT NULL COMMENT 'Fecha de última modificación del teléfono',
+  `email_modificacion` datetime DEFAULT NULL COMMENT 'Fecha de última modificación del email',
+  `direccion_modificacion` datetime DEFAULT NULL COMMENT 'Fecha de última modificación de la dirección',
+  `contrasena_modificacion` datetime DEFAULT NULL COMMENT 'Fecha de última modificación de la contraseña',
+  `rol_modificacion` datetime DEFAULT NULL COMMENT 'Fecha de última modificación del rol',
+  
+  -- ===== CAMPOS DE CONTROL DEL SISTEMA =====
+  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Fecha de registro en el sistema',
+  `ultima_modificacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Última modificación general',
+  `ultimo_login` datetime DEFAULT NULL COMMENT 'Fecha y hora del último inicio de sesión',
+  `token_recuperacion` varchar(100) DEFAULT NULL COMMENT 'Token para recuperación de contraseña',
+  `token_expiracion` datetime DEFAULT NULL COMMENT 'Fecha de expiración del token',
+  
+  -- ===== NUEVOS CAMPOS PARA RECUPERACIÓN POR PREGUNTAS =====
+  `bloqueo_recuperacion_hasta` datetime DEFAULT NULL COMMENT 'Bloqueo temporal por intentos fallidos de recuperación',
+  `ultima_recuperacion_exitosa` datetime DEFAULT NULL COMMENT 'Última recuperación de contraseña exitosa',
+  
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_cedula` (`cedula`) COMMENT 'Cédula única',
+  UNIQUE KEY `uk_email` (`email`) COMMENT 'Email único',
+  UNIQUE KEY `uk_telefono` (`telefono`) COMMENT 'Teléfono único',
+  
+  CONSTRAINT `fk_usuarios_roles` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Usuarios del sistema';
+
+-- =====================================================
+-- TABLA 3: intentos_login (Control de intentos de login)
+-- =====================================================
+CREATE TABLE IF NOT EXISTS `intentos_login` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cedula` varchar(10) NOT NULL COMMENT 'Cédula que intenta iniciar sesión',
+  `intentos_fallidos` int(11) NOT NULL DEFAULT 0 COMMENT 'Número de intentos fallidos consecutivos',
+  `ultimo_intento` datetime DEFAULT NULL COMMENT 'Fecha del último intento',
+  PRIMARY KEY (`id`),
+  KEY `idx_cedula` (`cedula`) COMMENT 'Índice para búsquedas por cédula'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Control de intentos fallidos de inicio de sesión';
+
+-- =====================================================
+-- TABLA 4: documentos (Gestión Documental)
+-- =====================================================
+CREATE TABLE IF NOT EXISTS `documentos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  
+  -- Identificación del documento
+  `tipo_documento` varchar(50) NOT NULL COMMENT 'Tipo: ley, manual, procedimiento, circular, norma, etc.',
+  `titulo` varchar(255) NOT NULL COMMENT 'Título completo del documento',
+  `descripcion` text DEFAULT NULL COMMENT 'Descripción o resumen del documento',
+  `gaceta` varchar(100) DEFAULT NULL COMMENT 'Número de gaceta oficial o referencia',
+  `estado` enum('pendiente','aprobado','rechazado') DEFAULT 'pendiente' COMMENT 'Estado del documento',
+  
+  -- Información del archivo físico
+  `archivo_nombre` varchar(255) NOT NULL COMMENT 'Nombre original del archivo',
+  `archivo_ruta` varchar(255) NOT NULL COMMENT 'Ruta donde está guardado el archivo',
+  `archivo_tamano` int(11) NOT NULL COMMENT 'Tamaño del archivo en bytes',
+  
+  -- Auditoría de creación
+  `creado_por_id` int(11) NOT NULL COMMENT 'ID del usuario que creó el documento',
+  `creado_por_nombre` varchar(100) NOT NULL COMMENT 'Nombre de quien creó',
+  `creado_por_cedula` varchar(10) NOT NULL COMMENT 'Cédula de quien creó',
+  `creado_por_rol` varchar(50) NOT NULL COMMENT 'Rol de quien creó',
+  `fecha_creacion` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Fecha de creación',
+  
+  -- Auditoría de modificación
+  `modificado_por_id` int(11) DEFAULT NULL COMMENT 'ID del usuario que modificó',
+  `modificado_por_nombre` varchar(100) DEFAULT NULL COMMENT 'Nombre de quien modificó',
+  `modificado_por_cedula` varchar(10) DEFAULT NULL COMMENT 'Cédula de quien modificó',
+  `modificado_por_rol` varchar(50) DEFAULT NULL COMMENT 'Rol de quien modificó',
+  `fecha_modificacion` datetime DEFAULT NULL COMMENT 'Fecha de modificación',
+  
+  -- Soft delete
+  `eliminado` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0 = activo, 1 = eliminado',
+  `eliminado_por_id` int(11) DEFAULT NULL COMMENT 'ID del usuario que eliminó',
+  `eliminado_por_nombre` varchar(100) DEFAULT NULL COMMENT 'Nombre de quien eliminó',
+  `eliminado_por_cedula` varchar(10) DEFAULT NULL COMMENT 'Cédula de quien eliminó',
+  `eliminado_por_rol` varchar(50) DEFAULT NULL COMMENT 'Rol de quien eliminó',
+  `fecha_eliminacion` datetime DEFAULT NULL COMMENT 'Fecha de eliminación',
+  `motivo_eliminacion` varchar(255) DEFAULT NULL COMMENT 'Motivo de eliminación',
+  
+  PRIMARY KEY (`id`),
+  KEY `idx_tipo` (`tipo_documento`) COMMENT 'Índice para filtrar por tipo',
+  KEY `idx_estado` (`estado`) COMMENT 'Índice para filtrar por estado',
+  KEY `idx_eliminado` (`eliminado`) COMMENT 'Índice para filtrar eliminados',
+  KEY `idx_creador` (`creado_por_id`) COMMENT 'Índice para búsquedas por creador',
+  
+  CONSTRAINT `fk_docs_creador` FOREIGN KEY (`creado_por_id`) REFERENCES `usuarios` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_docs_modificador` FOREIGN KEY (`modificado_por_id`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `fk_docs_eliminador` FOREIGN KEY (`eliminado_por_id`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Almacena todos los documentos del sistema';
+
+-- =====================================================
+-- TABLA 5: logs (Auditoría Centralizada)
+-- =====================================================
+CREATE TABLE IF NOT EXISTS `logs` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  
+  -- Datos de QUIÉN ejecutó la acción
+  `usuario_id` int(11) NOT NULL COMMENT 'ID del usuario que ejecutó la acción',
+  `usuario_nombre` varchar(100) NOT NULL COMMENT 'Nombre de quien ejecutó',
+  `usuario_cedula` varchar(10) NOT NULL COMMENT 'Cédula de quien ejecutó',
+  `usuario_rol` varchar(50) NOT NULL COMMENT 'Rol de quien ejecutó',
+  
+  -- Datos de la acción
+  `accion` varchar(50) NOT NULL COMMENT 'Acción realizada',
+  `tabla` varchar(50) NOT NULL COMMENT 'Tabla afectada',
+  `registro_id` int(11) NOT NULL COMMENT 'ID del registro afectado',
+  `registro_titulo` varchar(255) DEFAULT NULL COMMENT 'Nombre del registro afectado',
+  
+  -- Detalle adicional
+  `detalle` text DEFAULT NULL COMMENT 'Descripción detallada',
+  
+  -- Fecha y hora
+  `fecha` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Fecha y hora exacta',
+  
+  PRIMARY KEY (`id`),
+  KEY `idx_usuario` (`usuario_id`) COMMENT 'Índice para búsquedas por usuario',
+  KEY `idx_accion` (`accion`) COMMENT 'Índice para filtrar por acción',
+  KEY `idx_tabla` (`tabla`) COMMENT 'Índice para filtrar por tabla',
+  KEY `idx_fecha` (`fecha`) COMMENT 'Índice para búsquedas por fecha',
+  
+  CONSTRAINT `fk_logs_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Registro de auditoría de todas las acciones';
+
+-- =====================================================
+-- TABLA 6: preguntas_seguridad (Catálogo de preguntas)
+-- =====================================================
+CREATE TABLE IF NOT EXISTS `preguntas_seguridad` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pregunta` varchar(255) NOT NULL COMMENT 'Texto de la pregunta de seguridad',
+  `activa` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 = activa (visible), 0 = inactiva (oculta)',
+  `orden` int(11) NOT NULL DEFAULT 0 COMMENT 'Orden de visualización en listados',
+  `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Fecha de registro de la pregunta',
+  PRIMARY KEY (`id`),
+  KEY `idx_activa` (`activa`) COMMENT 'Índice para filtrar preguntas activas'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Catálogo de preguntas de seguridad predefinidas';
+
+-- Insertar preguntas de seguridad base (12 preguntas para dar variedad)
+INSERT INTO `preguntas_seguridad` (`pregunta`, `orden`) VALUES
+('¿Cuál es el nombre de tu primera mascota?', 1),
+('¿En qué ciudad naciste?', 2),
+('¿Cuál fue tu primer trabajo?', 3),
+('¿Cuál es tu comida favorita?', 4),
+('¿Cuál es tu película o canción favorita?', 5),
+('¿Cuál es el nombre de tu mejor amigo de la infancia?', 6),
+('¿Cuál es el nombre de tu profesor favorito?', 7),
+('¿Cuál era la marca de tu primer vehículo?', 8),
+('¿En qué hospital o clínica naciste?', 9),
+('¿Cuál es el nombre de tu escuela primaria?', 10),
+('¿Cuál fue tu último cargo ocupado en un trabajo?', 11),
+('¿Cuál es el nombre de tu deporte favorito?', 12);
+
+-- =====================================================
+-- TABLA 7: respuestas_seguridad (Respuestas de usuarios)
+-- =====================================================
+CREATE TABLE IF NOT EXISTS `respuestas_seguridad` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario_id` int(11) NOT NULL COMMENT 'ID del usuario (relación con usuarios)',
+  `pregunta_id` int(11) NOT NULL COMMENT 'ID de la pregunta (relación con preguntas_seguridad)',
+  `respuesta_hash` varchar(255) NOT NULL COMMENT 'Hash de la respuesta (usando password_hash)',
+  `creado_por_id` int(11) NOT NULL COMMENT 'ID del usuario que creó/registró esta respuesta',
+  `creado_por_nombre` varchar(100) NOT NULL COMMENT 'Nombre de quien creó/registró la respuesta',
+  `creado_por_cedula` varchar(10) NOT NULL COMMENT 'Cédula de quien creó/registró la respuesta',
+  `creado_por_rol` varchar(50) NOT NULL COMMENT 'Rol de quien creó/registró la respuesta',
+  `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Fecha de registro de la respuesta',
+  `modificado_por_id` int(11) DEFAULT NULL COMMENT 'ID del usuario que modificó la respuesta',
+  `modificado_por_nombre` varchar(100) DEFAULT NULL COMMENT 'Nombre de quien modificó la respuesta',
+  `modificado_por_cedula` varchar(10) DEFAULT NULL COMMENT 'Cédula de quien modificó la respuesta',
+  `modificado_por_rol` varchar(50) DEFAULT NULL COMMENT 'Rol de quien modificó la respuesta',
+  `fecha_modificacion` timestamp NULL DEFAULT NULL COMMENT 'Fecha de modificación de la respuesta',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_usuario_pregunta` (`usuario_id`, `pregunta_id`) COMMENT 'Un usuario no puede tener la misma pregunta repetida',
+  KEY `idx_usuario` (`usuario_id`) COMMENT 'Índice para búsquedas por usuario',
+  KEY `idx_pregunta` (`pregunta_id`) COMMENT 'Índice para búsquedas por pregunta',
+  KEY `idx_creado_por` (`creado_por_id`) COMMENT 'Índice para auditoría de creación',
+  KEY `idx_modificado_por` (`modificado_por_id`) COMMENT 'Índice para auditoría de modificaciones',
+  CONSTRAINT `fk_respuestas_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_respuestas_pregunta` FOREIGN KEY (`pregunta_id`) REFERENCES `preguntas_seguridad` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_respuestas_creado_por` FOREIGN KEY (`creado_por_id`) REFERENCES `usuarios` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_respuestas_modificado_por` FOREIGN KEY (`modificado_por_id`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Respuestas de seguridad de los usuarios con auditoría completa';
+
+-- =====================================================
+-- TABLA 8: intentos_recuperacion (Registro de intentos)
+-- =====================================================
+CREATE TABLE IF NOT EXISTS `intentos_recuperacion` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `cedula` varchar(10) NOT NULL COMMENT 'Cédula ingresada en el intento',
+  `usuario_id` int(11) DEFAULT NULL COMMENT 'ID del usuario si la cédula existe (null si no existe)',
+  `user_agent` text DEFAULT NULL COMMENT 'User Agent del navegador',
+  `exito` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0 = intento fallido, 1 = intento exitoso',
+  `preguntas_acertadas` int(11) DEFAULT NULL COMMENT 'Número de preguntas acertadas (si aplica)',
+  `detalle` varchar(255) DEFAULT NULL COMMENT 'Detalle adicional del intento',
+  `fecha_intento` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Fecha y hora del intento',
+  PRIMARY KEY (`id`),
+  KEY `idx_cedula` (`cedula`) COMMENT 'Índice para búsquedas por cédula',
+  KEY `idx_usuario` (`usuario_id`) COMMENT 'Índice para búsquedas por usuario',
+  KEY `idx_fecha` (`fecha_intento`) COMMENT 'Índice para búsquedas por fecha',
+  KEY `idx_exito` (`exito`) COMMENT 'Índice para filtrar por éxito/fallo',
+  CONSTRAINT `fk_intentos_recuperacion_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Registro de intentos de recuperación de contraseña';
+
+-- =====================================================
+-- TABLA 9: bloqueos_recuperacion (Control de bloqueos)
+-- =====================================================
+CREATE TABLE IF NOT EXISTS `bloqueos_recuperacion` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cedula` varchar(10) NOT NULL COMMENT 'Cédula bloqueada',
+  `intentos_fallidos` int(11) NOT NULL DEFAULT 0 COMMENT 'Contador de intentos fallidos',
+  `primer_intento` datetime DEFAULT NULL COMMENT 'Fecha del primer intento fallido',
+  `ultimo_intento` datetime DEFAULT NULL COMMENT 'Fecha del último intento fallido',
+  `bloqueo_hasta` datetime DEFAULT NULL COMMENT 'Fecha hasta la que está bloqueado (null = no bloqueado)',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_cedula` (`cedula`) COMMENT 'Una cédula por registro',
+  KEY `idx_bloqueo` (`bloqueo_hasta`) COMMENT 'Índice para buscar bloqueos activos'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Control de bloqueos por intentos fallidos de recuperación';
+
+-- =====================================================
+-- TABLA 10: historial_cambios_preguntas (Auditoría específica)
+-- =====================================================
+CREATE TABLE IF NOT EXISTS `historial_cambios_preguntas` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `usuario_afectado_id` int(11) NOT NULL COMMENT 'ID del usuario cuyas preguntas fueron modificadas',
+  `usuario_afectado_nombre` varchar(100) NOT NULL COMMENT 'Nombre del usuario afectado',
+  `usuario_afectado_cedula` varchar(10) NOT NULL COMMENT 'Cédula del usuario afectado',
+  `accion` varchar(50) NOT NULL COMMENT 'Acción: creación, modificación, admin_modifico',
+  `pregunta_id` int(11) DEFAULT NULL COMMENT 'ID de la pregunta modificada (si aplica)',
+  `pregunta_texto` varchar(255) DEFAULT NULL COMMENT 'Texto de la pregunta en ese momento',
+  `realizado_por_id` int(11) NOT NULL COMMENT 'ID de quien realizó el cambio',
+  `realizado_por_nombre` varchar(100) NOT NULL COMMENT 'Nombre de quien realizó el cambio',
+  `realizado_por_cedula` varchar(10) NOT NULL COMMENT 'Cédula de quien realizó el cambio',
+  `realizado_por_rol` varchar(50) NOT NULL COMMENT 'Rol de quien realizó el cambio',
+  `detalle` text DEFAULT NULL COMMENT 'Detalle adicional del cambio',
+  `fecha_cambio` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Fecha del cambio',
+  PRIMARY KEY (`id`),
+  KEY `idx_usuario_afectado` (`usuario_afectado_id`) COMMENT 'Índice para buscar por usuario afectado',
+  KEY `idx_realizado_por` (`realizado_por_id`) COMMENT 'Índice para buscar por quien realizó',
+  KEY `idx_fecha` (`fecha_cambio`) COMMENT 'Índice para búsquedas por fecha',
+  KEY `idx_accion` (`accion`) COMMENT 'Índice para filtrar por acción',
+  CONSTRAINT `fk_historial_usuario_afectado` FOREIGN KEY (`usuario_afectado_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_historial_realizado_por` FOREIGN KEY (`realizado_por_id`) REFERENCES `usuarios` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci COMMENT='Historial específico de cambios en preguntas de seguridad';
+
+-- =====================================================
+-- ÍNDICES ADICIONALES PARA OPTIMIZACIÓN
+-- =====================================================
+CREATE INDEX idx_intentos_recuperacion_cedula_fecha ON intentos_recuperacion(cedula, fecha_intento) COMMENT 'Optimiza búsquedas por cédula y fecha';
+CREATE INDEX idx_intentos_recuperacion_usuario_fecha ON intentos_recuperacion(usuario_id, fecha_intento) COMMENT 'Optimiza búsquedas por usuario y fecha';
+CREATE INDEX idx_historial_usuario_fecha ON historial_cambios_preguntas(usuario_afectado_id, fecha_cambio) COMMENT 'Optimiza búsquedas de historial por usuario';
+
+-- =====================================================
+-- NOTAS IMPORTANTES:
+-- =====================================================
+-- 1. Se agregaron 5 nuevas tablas (preguntas_seguridad, respuestas_seguridad, 
+--    intentos_recuperacion, bloqueos_recuperacion, historial_cambios_preguntas)
+-- 2. Se agregaron 2 campos a la tabla usuarios (bloqueo_recuperacion_hasta, ultima_recuperacion_exitosa)
+-- 3. TODAS las acciones quedan registradas con QUIÉN, CUÁNDO y DETALLE
+-- 4. Si un administrador modifica las preguntas de un usuario, queda registrado en:
+--    - respuestas_seguridad (con campos modificado_por_*)
+--    - historial_cambios_preguntas (con detalle específico)
+--    - logs (tabla general de auditoría)
+-- 5. Las respuestas se guardan con password_hash() para máxima seguridad
+-- 6. El sistema es completamente escalable: se pueden agregar más preguntas en cualquier momento
+-- =====================================================
